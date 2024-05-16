@@ -1,0 +1,28 @@
+server:
+  port: 8101
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: easy-open-user-service
+          uri: lb://easy-open-user-service
+          predicates:
+            - Path=/api/user/**
+        - id: easy-open-api-service
+          uri: lb://easy-open-api-service
+          predicates:
+            - Path=/api/interfaceInfo/**
+  application:
+    name: easy-open-gateway
+  main:
+    web-application-type: reactive
+knife4j:
+  gateway:
+    enabled: true
+    strategy: discover
+    discover:
+      enabled: true
+      version: swagger2
