@@ -1,6 +1,7 @@
 package com.yovvis.easyopenapiservice.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -14,7 +15,6 @@ import com.yovvis.easyopencommon.utils.SqlUtils;
 import com.yovvis.easyopenmodel.dto.interfaceinfo.InterfaceInfoQueryRequest;
 import com.yovvis.easyopenmodel.entity.InterfaceInfo;
 import com.yovvis.easyopenmodel.vo.InterfaceInfoVO;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,11 +44,11 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
         // 创建数据时，参数不能为空
         if (add) {
             // todo 补充校验规则
-            ThrowUtils.throwIf(StringUtils.isBlank(title), ErrorCode.PARAMS_ERROR);
+            ThrowUtils.throwIf(StrUtil.isBlank(title), ErrorCode.PARAMS_ERROR);
         }
         // 修改数据时，有参数则校验
         // todo 补充校验规则
-        if (StringUtils.isNotBlank(title)) {
+        if (StrUtil.isNotBlank(title)) {
             ThrowUtils.throwIf(title.length() > 80, ErrorCode.PARAMS_ERROR, "标题过长");
         }
     }
@@ -79,12 +79,12 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
         queryWrapper.eq(id != null, "id", id);
         queryWrapper.eq(status != null, "status", status);
         queryWrapper.eq(userId != null, "userId", userId);
-        queryWrapper.eq(StringUtils.isNotBlank(method), "method", method);
-        queryWrapper.like(StringUtils.isNotBlank(name), "name", name);
-        queryWrapper.like(StringUtils.isNotBlank(url), "url", url);
-        queryWrapper.like(StringUtils.isNotBlank(description), "description", description);
-        queryWrapper.like(StringUtils.isNotBlank(responseHeader), "responseHeader", responseHeader);
-        queryWrapper.like(StringUtils.isNotBlank(requestHeader), "requestHeader", requestHeader);
+        queryWrapper.eq(StrUtil.isNotBlank(method), "method", method);
+        queryWrapper.like(StrUtil.isNotBlank(name), "name", name);
+        queryWrapper.like(StrUtil.isNotBlank(url), "url", url);
+        queryWrapper.like(StrUtil.isNotBlank(description), "description", description);
+        queryWrapper.like(StrUtil.isNotBlank(responseHeader), "responseHeader", responseHeader);
+        queryWrapper.like(StrUtil.isNotBlank(requestHeader), "requestHeader", requestHeader);
         queryWrapper.orderBy(SqlUtils.validSortField(sortField), sortOrder.equals(CommonConstant.SORT_ORDER_ASC),
                 sortField);
         return queryWrapper;

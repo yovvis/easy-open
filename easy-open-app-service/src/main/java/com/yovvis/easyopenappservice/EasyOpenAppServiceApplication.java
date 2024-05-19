@@ -1,4 +1,4 @@
-package com.yovvis.easyopenuserservice;
+package com.yovvis.easyopenappservice;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
@@ -7,22 +7,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Slf4j
 @SpringBootApplication
-@MapperScan("com.yovvis.easyopenuserservice.mapper")
+@MapperScan("com.yovvis.easyopenappservice.mapper")
 @EnableScheduling
-@EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 @ComponentScan("com.yovvis")
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.yovvis.easyopenserviceclient.service"})
-public class EasyOpenUserServiceApplication {
+public class EasyOpenAppServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(EasyOpenUserServiceApplication.class, args);
+        SpringApplication.run(EasyOpenAppServiceApplication.class);
         log.info("\n----------------------------------------------------------\n\t" +
-                "【用户服务】 \"(♥◠‿◠)ﾉﾞ  启动成功   ლ(´ڡ`ლ)ﾞ\"\n\t" +
+                "【应用服务】 \"(♥◠‿◠)ﾉﾞ  启动成功   ლ(´ڡ`ლ)ﾞ\"\n\t" +
                 "----------------------------------------------------------");
     }
+
 }

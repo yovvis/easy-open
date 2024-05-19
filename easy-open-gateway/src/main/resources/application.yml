@@ -15,6 +15,10 @@ spring:
           uri: lb://easy-open-api-service
           predicates:
             - Path=/api/interfaceInfo/**
+        - id: easy-open-app-service
+          uri: lb://easy-open-app-service
+          predicates:
+            - Path=/api/app/**
   application:
     name: easy-open-gateway
   main:

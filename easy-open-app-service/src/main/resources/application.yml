@@ -1,7 +1,7 @@
 # 公共配置文件
 spring:
   application:
-    name: easy-open-api-service
+    name: easy-open-app-service
   # 默认 dev 环境
   profiles:
     active: dev
@@ -32,11 +32,15 @@ spring:
     multipart:
       # 大小限制
       max-file-size: 10MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 server:
   address: 0.0.0.0
-  port: 8103
+  port: 8104
   servlet:
-    context-path: /api/interfaceInfo
+    context-path: /api/app
     # cookie 30 天过期
     session:
       cookie:

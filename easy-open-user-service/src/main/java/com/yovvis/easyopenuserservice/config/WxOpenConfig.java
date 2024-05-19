@@ -1,4 +1,4 @@
-package com.yovvis.easyopencommon.config;
+package com.yovvis.easyopenuserservice.config;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
