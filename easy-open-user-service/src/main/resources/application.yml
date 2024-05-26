@@ -78,17 +78,12 @@ wx:
     appSecret: xxx
 # 对象存储
 # todo 需替换配置
-cos:
+s3:
   client:
-    accessKey: xxx
-    secretKey: xxx
-    region: xxx
-    bucket: xxx
-minio:
-  client:
-    accessKey: xxx
-    secretKey: xxx
-    region: xxx
-    endpoint: xxx
+    minio:
+      accessKey: xxx
+      secretKey: xxx
+      bucket: xxx
+      endpoint: xxx
 knife4j:
   enable: true

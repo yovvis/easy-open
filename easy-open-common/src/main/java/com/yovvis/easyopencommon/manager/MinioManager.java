@@ -1,6 +1,5 @@
-package com.yovvis.springbootinit.manager;
-
-import com.yovvis.springbootinit.config.MinioClientConfig;
+package com.yovvis.easyopencommon.manager;
+import com.yovvis.easyopencommon.config.MinioClientConfig;
 import io.minio.MinioClient;
 import io.minio.ObjectWriteResponse;
 import io.minio.UploadObjectArgs;

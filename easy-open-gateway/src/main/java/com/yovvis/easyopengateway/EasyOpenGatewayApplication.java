@@ -35,7 +35,8 @@ public class EasyOpenGatewayApplication {
         log.info("\n----------------------------------------------------------\n\t" +
                 "【轻享网关】 \"(♥◠‿◠)ﾉﾞ  启动成功   ლ(´ڡ`ლ)ﾞ\"\n\t" +
                 "Local访问网址: \t\thttp://localhost:" + port + path + "\n\t" +
-                "External访问网址: \thttp://" + ip + ":" + port + path + "\n\t" +
+                "Swagger2文档地址: \t\thttp://localhost:" + port + path + "/doc.html\n\t" +
+                "External访问地址: \thttp://" + ip + ":" + port + path + "\n\t" +
                 "----------------------------------------------------------");
     }
 
