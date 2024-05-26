@@ -20,5 +20,10 @@
             <groupId>com.qcloud</groupId>
             <artifactId>cos_api</artifactId>
         </dependency>
+        <!-- https://min.io/docs/minio/linux/developers/minio-drivers.html#java-sdk-->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+        </dependency>
     </dependencies>
 </project>

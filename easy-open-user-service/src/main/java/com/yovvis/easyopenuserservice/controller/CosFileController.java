@@ -6,11 +6,11 @@ import com.yovvis.easyopencommon.common.ErrorCode;
 import com.yovvis.easyopencommon.common.ResultUtils;
 import com.yovvis.easyopencommon.constant.FileConstant;
 import com.yovvis.easyopencommon.exception.BusinessException;
+import com.yovvis.easyopencommon.manager.CosManager;
 import com.yovvis.easyopenmodel.dto.file.UploadFileRequest;
 import com.yovvis.easyopenmodel.entity.User;
 import com.yovvis.easyopenmodel.enums.FileUploadBizEnum;
-import com.yovvis.easyopenserviceclient.service.UserFeignClient;
-import com.yovvis.springbootinit.manager.MinioManager;
+import com.yovvis.easyopenuserservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,15 +28,15 @@ import java.util.Arrays;
  * 文件接口
  */
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/cos_file")
 @Slf4j
-public class FileController {
+public class CosFileController {
 
     @Resource
-    private UserFeignClient userFeignClient;
+    private UserService userService;
 
     @Resource
-    private MinioManager minioManager;
+    private CosManager cosManager;
 
     /**
      * 文件上传
@@ -47,14 +47,15 @@ public class FileController {
      * @return
      */
     @PostMapping("/upload")
-    public BaseResponse<String> uploadFile(@RequestPart("file") MultipartFile multipartFile, UploadFileRequest uploadFileRequest, HttpServletRequest request) {
+    public BaseResponse<String> uploadFile(@RequestPart("file") MultipartFile multipartFile,
+                                           UploadFileRequest uploadFileRequest, HttpServletRequest request) {
         String biz = uploadFileRequest.getBiz();
         FileUploadBizEnum fileUploadBizEnum = FileUploadBizEnum.getEnumByValue(biz);
         if (fileUploadBizEnum == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         validFile(multipartFile, fileUploadBizEnum);
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userService.getLoginUser(request);
         // 文件目录：根据业务、用户来划分
         String uuid = RandomStringUtils.randomAlphanumeric(8);
         String filename = uuid + "-" + multipartFile.getOriginalFilename();
@@ -64,9 +65,9 @@ public class FileController {
             // 上传文件
             file = File.createTempFile(filepath, null);
             multipartFile.transferTo(file);
-            minioManager.uploadObject(filepath, file);
+            cosManager.putObject(filepath, file);
             // 返回可访问地址
-            return ResultUtils.success(FileConstant.MINIO_HOST + filepath);
+            return ResultUtils.success(FileConstant.COS_HOST + filepath);
         } catch (Exception e) {
             log.error("file upload error, filepath = " + filepath, e);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "上传失败");

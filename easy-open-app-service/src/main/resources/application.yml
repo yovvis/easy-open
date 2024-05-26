@@ -61,5 +61,11 @@ cos:
     secretKey: xxx
     region: xxx
     bucket: xxx
+minio:
+  client:
+    accessKey: xxx
+    secretKey: xxx
+    endpoint: xxx
+    bucket: xxx
 knife4j:
   enable: true
