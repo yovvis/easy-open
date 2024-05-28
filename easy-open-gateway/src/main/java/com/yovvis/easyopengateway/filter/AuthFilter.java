@@ -39,6 +39,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
             DataBuffer dataBuffer = dataBufferFactory.wrap("无权限".getBytes(StandardCharsets.UTF_8));
             return response.writeWith(Mono.just(dataBuffer));
         }
+        // todo 鉴权逻辑
         return chain.filter(exchange);
     }
 

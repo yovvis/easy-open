@@ -9,8 +9,10 @@ import com.yovvis.easyopencommon.common.ResultUtils;
 import com.yovvis.easyopencommon.constant.UserConstant;
 import com.yovvis.easyopencommon.exception.BusinessException;
 import com.yovvis.easyopencommon.exception.ThrowUtils;
+import com.yovvis.easyopenmodel.dto.file.UploadFileRequest;
 import com.yovvis.easyopenmodel.dto.user.*;
 import com.yovvis.easyopenmodel.entity.User;
+import com.yovvis.easyopenmodel.enums.FileUploadBizEnum;
 import com.yovvis.easyopenmodel.vo.LoginUserVO;
 import com.yovvis.easyopenmodel.vo.TokenLoginUserVO;
 import com.yovvis.easyopenmodel.vo.UserVO;
@@ -44,6 +46,9 @@ public class UserController {
 
     @Resource
     private WxOpenConfig wxOpenConfig;
+
+    @Resource
+    private FileController fileController;
 
     // region 登录相关
 
@@ -156,12 +161,18 @@ public class UserController {
      */
     @PostMapping("/add")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Long> addUser(@RequestBody UserAddRequest userAddRequest, HttpServletRequest request) {
+    public BaseResponse<Long> addUser(UserAddRequest userAddRequest, HttpServletRequest request) {
         if (userAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         User user = new User();
         BeanUtils.copyProperties(userAddRequest, user);
+        // 上传头像
+        UploadFileRequest uploadFileRequest = new UploadFileRequest();
+        uploadFileRequest.setBiz(FileUploadBizEnum.USER_AVATAR.getValue());
+        BaseResponse<String> stringBaseResponse = fileController.uploadFile(userAddRequest.getUserAvatar(), uploadFileRequest, request);
+        String avatar = stringBaseResponse.getData();
+        user.setUserAvatar(avatar);
         // 默认密码 11111
         String defaultPassword = "11111";
         String encryptPassword = DigestUtils.md5DigestAsHex((SALT + defaultPassword).getBytes());
@@ -197,13 +208,22 @@ public class UserController {
      */
     @PostMapping("/update")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Boolean> updateUser(@RequestBody UserUpdateRequest userUpdateRequest,
+    public BaseResponse<Boolean> updateUser(UserUpdateRequest userUpdateRequest,
                                             HttpServletRequest request) {
         if (userUpdateRequest == null || userUpdateRequest.getId() == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         User user = new User();
+        // 判断是否有新头像上传
         BeanUtils.copyProperties(userUpdateRequest, user);
+        if (userUpdateRequest.getNewAvatar() != null) {
+            // 上传头像
+            UploadFileRequest uploadFileRequest = new UploadFileRequest();
+            uploadFileRequest.setBiz(FileUploadBizEnum.USER_AVATAR.getValue());
+            BaseResponse<String> stringBaseResponse = fileController.uploadFile(userUpdateRequest.getNewAvatar(), uploadFileRequest, request);
+            String avatar = stringBaseResponse.getData();
+            user.setUserAvatar(avatar);
+        }
         boolean result = userService.updateById(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
