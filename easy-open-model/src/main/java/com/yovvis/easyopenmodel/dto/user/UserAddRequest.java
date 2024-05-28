@@ -2,6 +2,7 @@ package com.yovvis.easyopenmodel.dto.user;
 
 import java.io.Serializable;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 用户创建请求
@@ -20,9 +21,14 @@ public class UserAddRequest implements Serializable {
     private String userAccount;
 
     /**
+     * 简介
+     */
+    private String userProfile;
+
+    /**
      * 用户头像
      */
-    private String userAvatar;
+    private MultipartFile userAvatar;
 
     /**
      * 用户角色: user, admin
