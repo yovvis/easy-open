@@ -1,5 +1,6 @@
 package com.yovvis.easyopengateway.filter;
 
+import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -30,15 +31,14 @@ public class AuthFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest serverHttpRequest = exchange.getRequest();
         String path = serverHttpRequest.getURI().getPath();
+        ServerHttpResponse response = exchange.getResponse();
         // 判断路径中是否包含 inner，只允许内部调用
         if (antPathMatcher.match("/**/inner/**", path)) {
-            ServerHttpResponse response = exchange.getResponse();
             response.setStatusCode(HttpStatus.FORBIDDEN);
             DataBufferFactory dataBufferFactory = response.bufferFactory();
             DataBuffer dataBuffer = dataBufferFactory.wrap("无权限".getBytes(StandardCharsets.UTF_8));
             return response.writeWith(Mono.just(dataBuffer));
         }
-        // todo 统一权限校验，通过 JWT 获取登录用户信息
         return chain.filter(exchange);
     }
 

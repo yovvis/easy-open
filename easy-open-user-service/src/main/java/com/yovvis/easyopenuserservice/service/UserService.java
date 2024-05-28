@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yovvis.easyopenmodel.dto.user.UserQueryRequest;
 import com.yovvis.easyopenmodel.entity.User;
 import com.yovvis.easyopenmodel.vo.LoginUserVO;
+import com.yovvis.easyopenmodel.vo.TokenLoginUserVO;
 import com.yovvis.easyopenmodel.vo.UserVO;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 
@@ -31,43 +32,52 @@ public interface UserService extends IService<User> {
      *
      * @param userAccount  用户账户
      * @param userPassword 用户密码
-     * @param request
      * @return 脱敏后的用户信息
      */
-    LoginUserVO userLogin(String userAccount, String userPassword, HttpServletRequest request);
+    TokenLoginUserVO userLogin(String userAccount, String userPassword);
 
     /**
      * 用户登录（微信开放平台）
      *
      * @param wxOAuth2UserInfo 从微信获取的用户信息
-     * @param request
      * @return 脱敏后的用户信息
      */
-    LoginUserVO userLoginByMpOpen(WxOAuth2UserInfo wxOAuth2UserInfo, HttpServletRequest request);
+    LoginUserVO userLoginByMpOpen(WxOAuth2UserInfo wxOAuth2UserInfo);
 
     /**
      * 获取当前登录用户
      *
-     * @param request
      * @return
      */
-    User getLoginUser(HttpServletRequest request);
+    User getLoginUser();
+
+    /**
+     * 获取当前登录用户
+     *
+     * @return
+     */
+    User getLoginUser(String token);
+
+    /**
+     * 获取token用户
+     *
+     * @return
+     */
+    TokenLoginUserVO getTokenLoginUserVO(User user);
 
     /**
      * 获取当前登录用户（允许未登录）
      *
-     * @param request
      * @return
      */
-    User getLoginUserPermitNull(HttpServletRequest request);
+    User getLoginUserPermitNull();
 
     /**
      * 是否为管理员
      *
-     * @param request
      * @return
      */
-    boolean isAdmin(HttpServletRequest request);
+    boolean isAdmin();
 
     /**
      * 是否为管理员
@@ -80,10 +90,9 @@ public interface UserService extends IService<User> {
     /**
      * 用户注销
      *
-     * @param request
      * @return
      */
-    boolean userLogout(HttpServletRequest request);
+    boolean userLogout();
 
     /**
      * 获取脱敏的已登录用户信息
