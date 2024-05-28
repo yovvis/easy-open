@@ -1,5 +1,6 @@
 package com.yovvis.easyopenserviceclient.service;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.yovvis.easyopencommon.common.ErrorCode;
 import com.yovvis.easyopencommon.exception.BusinessException;
 import com.yovvis.easyopenmodel.entity.User;
@@ -49,7 +50,7 @@ public interface UserFeignClient {
      */
     default User getLoginUser(HttpServletRequest request) {
         // 先判断是否已登录
-        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+        Object userObj = StpUtil.getTokenSession().get(USER_LOGIN_STATE);
         User currentUser = (User) userObj;
         if (currentUser == null || currentUser.getId() == null) {
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
