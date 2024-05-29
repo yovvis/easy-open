@@ -19,9 +19,9 @@ spring:
   # 数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/tenyon
+    url: jdbc:mysql://${db.host}:3306/tenyon
     username: tenyon
-    password: yovvis
+    password: ${db.pw}
   redis:
     database: 1
     host: localhost
@@ -77,18 +77,16 @@ wx:
         port: 6379
       type: Memory
   # 微信开放平台
-  # todo 需替换配置
   open:
     appId: xxx
     appSecret: xxx
 # 对象存储
-# todo 需替换配置
 s3:
   client:
     minio:
-      accessKey: xxx
-      secretKey: xxx
-      bucket: xxx
-      endpoint: xxx
+      accessKey: ${minio.accessKey}
+      secretKey: ${minio.secretKey}
+      bucket: tenyon
+      endpoint: api.oos.uninull.cn
 knife4j:
   enable: true
