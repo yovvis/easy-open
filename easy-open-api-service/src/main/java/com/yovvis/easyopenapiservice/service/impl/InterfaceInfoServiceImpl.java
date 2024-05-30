@@ -6,15 +6,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yovvis.easyopenapiservice.mapper.InterfaceInfoMapper;
+import com.yovvis.easyopenapiservice.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
+import com.yovvis.easyopenapiservice.model.entity.InterfaceInfo;
+import com.yovvis.easyopenapiservice.model.vo.InterfaceInfoVO;
 import com.yovvis.easyopenapiservice.service.InterfaceInfoService;
 import com.yovvis.easyopencommon.common.ErrorCode;
 import com.yovvis.easyopencommon.constant.CommonConstant;
 import com.yovvis.easyopencommon.exception.BusinessException;
 import com.yovvis.easyopencommon.exception.ThrowUtils;
 import com.yovvis.easyopencommon.utils.SqlUtils;
-import com.yovvis.easyopenmodel.dto.interfaceinfo.InterfaceInfoQueryRequest;
-import com.yovvis.easyopenmodel.entity.InterfaceInfo;
-import com.yovvis.easyopenmodel.vo.InterfaceInfoVO;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;

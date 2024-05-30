@@ -2,14 +2,14 @@ package com.yovvis.easyopenappservice.scoring;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.yovvis.easyopenappservice.model.dto.question.QuestionContentDTO;
+import com.yovvis.easyopenappservice.model.entity.App;
+import com.yovvis.easyopenappservice.model.entity.Question;
+import com.yovvis.easyopenappservice.model.entity.ScoringResult;
+import com.yovvis.easyopenappservice.model.entity.UserAnswer;
+import com.yovvis.easyopenappservice.model.vo.QuestionVO;
 import com.yovvis.easyopenappservice.service.QuestionService;
 import com.yovvis.easyopenappservice.service.ScoringResultService;
-import com.yovvis.easyopenmodel.dto.question.QuestionContentDTO;
-import com.yovvis.easyopenmodel.entity.App;
-import com.yovvis.easyopenmodel.entity.Question;
-import com.yovvis.easyopenmodel.entity.ScoringResult;
-import com.yovvis.easyopenmodel.entity.UserAnswer;
-import com.yovvis.easyopenmodel.vo.QuestionVO;
 
 import javax.annotation.Resource;
 import java.util.HashMap;

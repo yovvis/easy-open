@@ -2,14 +2,13 @@ package com.yovvis.easyopenuserservice.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yovvis.easyopenmodel.dto.user.UserQueryRequest;
-import com.yovvis.easyopenmodel.entity.User;
-import com.yovvis.easyopenmodel.vo.LoginUserVO;
-import com.yovvis.easyopenmodel.vo.TokenLoginUserVO;
-import com.yovvis.easyopenmodel.vo.UserVO;
+import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.vo.LoginUserVO;
+import com.yovvis.easyopenapi.model.vo.TokenLoginUserVO;
+import com.yovvis.easyopenapi.model.vo.UserVO;
+import com.yovvis.easyopenuserservice.model.dto.user.UserQueryRequest;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**

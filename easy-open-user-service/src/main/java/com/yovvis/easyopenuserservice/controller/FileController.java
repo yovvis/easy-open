@@ -1,16 +1,16 @@
 package com.yovvis.easyopenuserservice.controller;
 
 import cn.hutool.core.io.FileUtil;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopencommon.common.BaseResponse;
 import com.yovvis.easyopencommon.common.ErrorCode;
 import com.yovvis.easyopencommon.common.ResultUtils;
 import com.yovvis.easyopencommon.constant.FileConstant;
+import com.yovvis.easyopencommon.enums.FileUploadBizEnum;
 import com.yovvis.easyopencommon.exception.BusinessException;
-import com.yovvis.easyopenmodel.dto.file.UploadFileRequest;
-import com.yovvis.easyopenmodel.entity.User;
-import com.yovvis.easyopenmodel.enums.FileUploadBizEnum;
-import com.yovvis.easyopenserviceclient.service.UserFeignClient;
+import com.yovvis.easyopenapi.client.UserFeignClient;
 import com.yovvis.easyopenuserservice.manager.MinioManager;
+import com.yovvis.easyopenuserservice.model.dto.file.UploadFileRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -23,7 +23,12 @@
         <!-- base -->
         <dependency>
             <groupId>com.yovvis</groupId>
-            <artifactId>easy-open-service-client</artifactId>
+            <artifactId>easy-open-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yovvis</groupId>
+            <artifactId>easy-open-common</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

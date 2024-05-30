@@ -17,7 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 @ComponentScan("com.yovvis")
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"com.yovvis.easyopenserviceclient.service"})
+@EnableFeignClients(basePackages = {"com.yovvis.easyopenapi.client"})
 public class EasyOpenUserServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(EasyOpenUserServiceApplication.class, args);

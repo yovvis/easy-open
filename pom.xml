@@ -11,9 +11,8 @@
     <description>轻享开放平台</description>
     <modules>
         <module>easy-open-common</module>
-        <module>easy-open-model</module>
         <module>easy-open-gateway</module>
-        <module>easy-open-service-client</module>
+        <module>easy-open-api</module>
         <module>easy-open-user-service</module>
         <module>easy-open-api-service</module>
         <module>easy-open-app-service</module>

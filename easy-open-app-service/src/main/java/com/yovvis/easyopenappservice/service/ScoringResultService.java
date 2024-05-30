@@ -4,9 +4,9 @@ package com.yovvis.easyopenappservice.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yovvis.easyopenmodel.dto.scoringresult.ScoringResultQueryRequest;
-import com.yovvis.easyopenmodel.entity.ScoringResult;
-import com.yovvis.easyopenmodel.vo.ScoringResultVO;
+import com.yovvis.easyopenappservice.model.dto.scoringresult.ScoringResultQueryRequest;
+import com.yovvis.easyopenappservice.model.entity.ScoringResult;
+import com.yovvis.easyopenappservice.model.vo.ScoringResultVO;
 
 import javax.servlet.http.HttpServletRequest;
 

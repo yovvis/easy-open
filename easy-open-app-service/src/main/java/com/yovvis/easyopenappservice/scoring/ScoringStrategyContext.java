@@ -1,11 +1,11 @@
 package com.yovvis.easyopenappservice.scoring;
 
+import com.yovvis.easyopenappservice.model.entity.App;
+import com.yovvis.easyopenappservice.model.entity.UserAnswer;
 import com.yovvis.easyopencommon.common.ErrorCode;
+import com.yovvis.easyopencommon.enums.AppScoringStrategyEnum;
+import com.yovvis.easyopencommon.enums.AppTypeEnum;
 import com.yovvis.easyopencommon.exception.BusinessException;
-import com.yovvis.easyopenmodel.entity.App;
-import com.yovvis.easyopenmodel.entity.UserAnswer;
-import com.yovvis.easyopenmodel.enums.AppScoringStrategyEnum;
-import com.yovvis.easyopenmodel.enums.AppTypeEnum;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

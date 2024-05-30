@@ -1,7 +1,8 @@
 package com.yovvis.easyopenappservice.scoring;
 
-import com.yovvis.easyopenmodel.entity.App;
-import com.yovvis.easyopenmodel.entity.UserAnswer;
+
+import com.yovvis.easyopenappservice.model.entity.App;
+import com.yovvis.easyopenappservice.model.entity.UserAnswer;
 
 import java.util.List;
 

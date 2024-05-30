@@ -1,7 +1,7 @@
 package com.yovvis.easyopenuserservice.controller.inner;
 
-import com.yovvis.easyopenmodel.entity.User;
-import com.yovvis.easyopenserviceclient.service.UserFeignClient;
+import com.yovvis.easyopenapi.client.UserFeignClient;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopenuserservice.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
