@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @ComponentScan("com.yovvis")
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"com.yovvis.easyopenserviceclient.service"})
+@EnableFeignClients(basePackages = {"com.yovvis.easyopenapi.client"})
 public class EasyOpenApiServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(EasyOpenApiServiceApplication.class);

@@ -1,7 +1,7 @@
 package com.yovvis.easyopenapiservice.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yovvis.easyopenmodel.entity.InterfaceInfo;
+import com.yovvis.easyopenapiservice.model.entity.InterfaceInfo;
 
 /**
 * @author yovvis

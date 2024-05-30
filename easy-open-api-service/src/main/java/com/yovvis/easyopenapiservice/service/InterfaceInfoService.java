@@ -1,11 +1,12 @@
 package com.yovvis.easyopenapiservice.service;
 
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yovvis.easyopenmodel.dto.interfaceinfo.InterfaceInfoQueryRequest;
-import com.yovvis.easyopenmodel.entity.InterfaceInfo;
-import com.yovvis.easyopenmodel.vo.InterfaceInfoVO;
+import com.yovvis.easyopenapiservice.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
+import com.yovvis.easyopenapiservice.model.entity.InterfaceInfo;
+import com.yovvis.easyopenapiservice.model.vo.InterfaceInfoVO;
 
 import javax.servlet.http.HttpServletRequest;
 

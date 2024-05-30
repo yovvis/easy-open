@@ -2,7 +2,7 @@ package com.yovvis.easyopenappservice.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yovvis.easyopenmodel.entity.Question;
+import com.yovvis.easyopenappservice.model.entity.Question;
 
 /**
 * @author cruiser

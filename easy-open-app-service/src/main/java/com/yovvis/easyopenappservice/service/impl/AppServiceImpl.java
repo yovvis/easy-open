@@ -8,6 +8,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.vo.UserVO;
+import com.yovvis.easyopenappservice.model.dto.app.AppQueryRequest;
+import com.yovvis.easyopenappservice.model.entity.App;
+import com.yovvis.easyopenappservice.model.vo.AppVO;
+import com.yovvis.easyopencommon.enums.AppScoringStrategyEnum;
+import com.yovvis.easyopencommon.enums.AppTypeEnum;
+import com.yovvis.easyopencommon.enums.ReviewStatusEnum;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -20,15 +28,7 @@ import com.yovvis.easyopencommon.common.ErrorCode;
 import com.yovvis.easyopencommon.constant.CommonConstant;
 import com.yovvis.easyopencommon.exception.ThrowUtils;
 import com.yovvis.easyopencommon.utils.SqlUtils;
-import com.yovvis.easyopenmodel.dto.app.AppQueryRequest;
-import com.yovvis.easyopenmodel.entity.App;
-import com.yovvis.easyopenmodel.entity.User;
-import com.yovvis.easyopenmodel.enums.AppScoringStrategyEnum;
-import com.yovvis.easyopenmodel.enums.AppTypeEnum;
-import com.yovvis.easyopenmodel.enums.ReviewStatusEnum;
-import com.yovvis.easyopenmodel.vo.AppVO;
-import com.yovvis.easyopenmodel.vo.UserVO;
-import com.yovvis.easyopenserviceclient.service.UserFeignClient;
+import com.yovvis.easyopenapi.client.UserFeignClient;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;

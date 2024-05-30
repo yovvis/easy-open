@@ -5,6 +5,10 @@ spring:
   # 默认 dev 环境
   profiles:
     active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.addr}
   # 支持 swagger3
   mvc:
     pathmatch:
@@ -19,12 +23,13 @@ spring:
   # 数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${db.host}:3306/tenyon
+    url: jdbc:mysql://${db.mysql.host}:3306/tenyon
     username: tenyon
-    password: ${db.pw}
+    password: ${db.mysql.pw}
   redis:
     database: 1
-    host: localhost
+    host: ${db.redis.host}
+    password: ${db.redis.pw}
     port: 6379
     timeout: 10s
     lettuce:

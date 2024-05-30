@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yovvis.easyopenuserservice.mapper.UserMapper">
 
-    <resultMap id="BaseResultMap" type="com.yovvis.easyopenmodel.entity.User">
+    <resultMap id="BaseResultMap" type="com.yovvis.easyopenapi.model.entity.User">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="userAccount" column="userAccount" jdbcType="VARCHAR"/>
             <result property="userPassword" column="userPassword" jdbcType="VARCHAR"/>

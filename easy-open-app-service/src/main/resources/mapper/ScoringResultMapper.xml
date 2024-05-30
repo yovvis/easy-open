@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yovvis.easyopenappservice.mapper.ScoringResultMapper">
 
-    <resultMap id="BaseResultMap" type="com.yovvis.easyopenmodel.entity.ScoringResult">
+    <resultMap id="BaseResultMap" type="com.yovvis.easyopenappservice.model.entity.ScoringResult">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="resultName" column="resultName" jdbcType="VARCHAR"/>
             <result property="resultDesc" column="resultDesc" jdbcType="VARCHAR"/>
