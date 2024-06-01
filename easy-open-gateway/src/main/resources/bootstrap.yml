@@ -1,6 +1,8 @@
 spring:
   application:
     name: easy-open-gateway
+  profiles:
+    active: dev
   cloud:
     nacos:
       discovery:
