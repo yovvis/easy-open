@@ -1,3 +1,7 @@
+.mysql-data
+.nacos-data
+.redis-data
+logs
 application-dev.yml
 application-prod.yml
 bootstrap-dev.yml
