@@ -1,12 +1,11 @@
 server:
   port: 8101
 spring:
-  profiles:
-    active: dev
   cloud:
     nacos:
       discovery:
         server-addr: ${nacos.addr}
+        namespace: ${nacos.namespace}
     gateway:
       routes:
         - id: easy-open-user-service
@@ -21,8 +20,6 @@ spring:
           uri: lb://easy-open-app-service
           predicates:
             - Path=/api/app/**
-  application:
-    name: easy-open-gateway
   main:
     web-application-type: reactive
 knife4j:
