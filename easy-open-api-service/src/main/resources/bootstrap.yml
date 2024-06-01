@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: easy-open-api-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.addr}
+        namespace: ${nacos.namespace}
+      server-addr: ${nacos.addr}
+      config:
+        file-extension: yml
+        shared-configs:
+          - data-id: shared-db.yml
+          - data-id: shared-oss.yml
+          - data-id: shared-log.yml
+        namespace: ${nacos.namespace}
