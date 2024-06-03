@@ -9,7 +9,6 @@
 
 <a href="https://open.cuuxx.com" target="_blank"><img alt="Preview url" src="https://img.shields.io/badge/%E9%A2%84%E8%A7%88%E5%9C%B0%E5%9D%80-8A2BE2?color=%2314C9C9"/></a>
 <img alt="Licence" src="https://img.shields.io/github/license/yovvis/easy-open" />
-<img alt="Version" src="https://img.shields.io/github/package-json/v/yovvis/easy-open/main">
 
 
 _📌前端导航： <a href="https://github.com/yovvis/easy-open-ui" target="_blank">easy-open-ui</a> 👈🏻_
