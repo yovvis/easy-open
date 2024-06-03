@@ -1,1 +1,0 @@
-import{_ as t,c as o,w as a,B as c,o as n,a as r}from"./index-DSC3Ms3s.js";const s={};function _(f,p){const e=c;return n(),o(e,{href:"/app/home"},{default:a(()=>[r("前往APP首页")]),_:1})}const u=t(s,[["render",_]]);export{u as default};

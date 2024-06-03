@@ -14,7 +14,6 @@ import com.yovvis.easyopencommon.constant.UserConstant;
 import com.yovvis.easyopencommon.enums.FileUploadBizEnum;
 import com.yovvis.easyopencommon.exception.BusinessException;
 import com.yovvis.easyopencommon.exception.ThrowUtils;
-import com.yovvis.easyopenuserservice.config.WxOpenConfig;
 import com.yovvis.easyopenuserservice.model.dto.file.UploadFileRequest;
 import com.yovvis.easyopenuserservice.model.dto.user.*;
 import com.yovvis.easyopenuserservice.service.UserService;
@@ -43,9 +42,6 @@ public class UserController {
 
     @Resource
     private UserService userService;
-
-    @Resource
-    private WxOpenConfig wxOpenConfig;
 
     @Resource
     private FileController fileController;
@@ -91,28 +87,6 @@ public class UserController {
         }
         TokenLoginUserVO tokenLoginUserVO = userService.userLogin(userAccount, userPassword);
         return ResultUtils.success(tokenLoginUserVO);
-    }
-
-    /**
-     * 用户登录（微信开放平台）
-     */
-    @GetMapping("/login/wx_open")
-    public BaseResponse<LoginUserVO> userLoginByWxOpen(@RequestParam("code") String code) {
-        WxOAuth2AccessToken accessToken;
-        try {
-            WxMpService wxService = wxOpenConfig.getWxMpService();
-            accessToken = wxService.getOAuth2Service().getAccessToken(code);
-            WxOAuth2UserInfo userInfo = wxService.getOAuth2Service().getUserInfo(accessToken, code);
-            String unionId = userInfo.getUnionId();
-            String mpOpenId = userInfo.getOpenid();
-            if (StringUtils.isAnyBlank(unionId, mpOpenId)) {
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败，系统错误");
-            }
-            return ResultUtils.success(userService.userLoginByMpOpen(userInfo));
-        } catch (Exception e) {
-            log.error("userLoginByWxOpen error", e);
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败，系统错误");
-        }
     }
 
     /**

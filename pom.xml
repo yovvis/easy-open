@@ -36,7 +36,7 @@
         <sa-token.version>1.38.0</sa-token.version>
         <knife4j-version>4.4.0</knife4j-version>
         <!-- yewu -->
-        <wx.version>4.4.0</wx.version>
+        <wx.version>4.6.0</wx.version>
         <minio.version>8.5.10</minio.version>
     </properties>
     <dependencies>

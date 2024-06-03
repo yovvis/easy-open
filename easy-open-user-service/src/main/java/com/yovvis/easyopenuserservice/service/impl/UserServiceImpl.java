@@ -20,14 +20,13 @@ import com.yovvis.easyopenuserservice.dao.UserDAO;
 import com.yovvis.easyopenuserservice.mapper.UserMapper;
 import com.yovvis.easyopenuserservice.model.dto.user.UserQueryRequest;
 import com.yovvis.easyopenuserservice.service.UserService;
-import com.yovvis.easyopenuserservice.wechat.domain.bo.QrcodeInfoBO;
-import com.yovvis.easyopenuserservice.wechat.enums.QrcodeStatusEnum;
-import com.yovvis.easyopenuserservice.wechat.service.QrcodeService;
+import com.yovvis.easyopenuserservice.wxmp.model.bo.QrcodeInfoBO;
+import com.yovvis.easyopenuserservice.wxmp.enums.QrcodeStatusEnum;
+import com.yovvis.easyopenuserservice.wxmp.service.QrcodeService;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
