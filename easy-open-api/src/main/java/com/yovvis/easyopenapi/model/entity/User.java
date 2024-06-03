@@ -20,6 +20,12 @@ public class User implements Serializable {
     private Long id;
 
     /**
+     * openId
+     */
+    @TableField(value = "open_id")
+    private String openId;
+
+    /**
      * 账号
      */
     private String userAccount;

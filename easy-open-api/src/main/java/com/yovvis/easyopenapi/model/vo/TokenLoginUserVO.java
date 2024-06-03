@@ -10,7 +10,6 @@ import java.io.Serializable;
  **/
 @Data
 public class TokenLoginUserVO implements Serializable {
-
     /**
      *token的信息
      */

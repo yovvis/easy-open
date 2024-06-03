@@ -3,6 +3,7 @@ package com.yovvis.easyopenuserservice.service.impl;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,16 +16,22 @@ import com.yovvis.easyopencommon.constant.CommonConstant;
 import com.yovvis.easyopencommon.enums.UserRoleEnum;
 import com.yovvis.easyopencommon.exception.BusinessException;
 import com.yovvis.easyopencommon.utils.SqlUtils;
+import com.yovvis.easyopenuserservice.dao.UserDAO;
 import com.yovvis.easyopenuserservice.mapper.UserMapper;
 import com.yovvis.easyopenuserservice.model.dto.user.UserQueryRequest;
 import com.yovvis.easyopenuserservice.service.UserService;
+import com.yovvis.easyopenuserservice.wechat.domain.bo.QrcodeInfoBO;
+import com.yovvis.easyopenuserservice.wechat.enums.QrcodeStatusEnum;
+import com.yovvis.easyopenuserservice.wechat.service.QrcodeService;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,6 +50,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * 盐值，混淆密码
      */
     public static final String SALT = "yovvis";
+
+    @Resource
+    private QrcodeService qrcodeService;
+
+    @Resource
+    private UserDAO userDao;
 
     @Override
     public long userRegister(String userAccount, String userPassword, String checkPassword) {
@@ -177,7 +190,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         TokenLoginUserVO tokenLoginUserVO = new TokenLoginUserVO();
         BeanUtils.copyProperties(user, tokenLoginUserVO);
-        //获取 Token  相关参数
+        // 获取 Token  相关参数
         SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
         tokenLoginUserVO.setSaTokenInfo(tokenInfo);
         return tokenLoginUserVO;
@@ -306,5 +319,48 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         queryWrapper.orderBy(SqlUtils.validSortField(sortField), sortOrder.equals(CommonConstant.SORT_ORDER_ASC),
                 sortField);
         return queryWrapper;
+    }
+
+    /**
+     * 使用微信登录
+     *
+     * @param code 微信二维码绑定的code
+     * @param user 用户信息
+     */
+    @Override
+    public void loginByWx(Integer code, User user) {
+        TokenLoginUserVO tokenLoginUserVO = new TokenLoginUserVO();
+        BeanUtils.copyProperties(user, tokenLoginUserVO);
+        // 获取 Token  相关参数
+        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+        tokenLoginUserVO.setSaTokenInfo(tokenInfo);
+        // 记录用户的登录态
+        StpUtil.login(user.getId());
+        StpUtil.getTokenSession().set(USER_LOGIN_STATE, user);
+        // 保存当前二维码扫描状态为已使用
+        QrcodeInfoBO qrcodeInfoBO = new QrcodeInfoBO();
+        qrcodeInfoBO.setStatus(QrcodeStatusEnum.AUTHORIZED.getCode());
+        qrcodeInfoBO.setTokenLoginUserVO(tokenLoginUserVO);
+        qrcodeService.saveLoginStatus(code, qrcodeInfoBO);
+    }
+
+    /**
+     * 使用微信注册
+     *
+     * @param code 微信二维码绑定的code
+     * @param user 需要保存的用户信息
+     */
+    @Override
+    public void registerByWx(Integer code, User user) {
+        String account = "qxkfpt_" + RandomUtil.randomNumbers(5);
+        String password = "123456";
+        String encryptPassword = DigestUtils.md5DigestAsHex((SALT + password).getBytes());
+        // 设置账户名和密码
+        user.setUserAccount(account);
+        user.setUserPassword(encryptPassword);
+        // 保存用户信息
+        userDao.save(user);
+        // 登录
+        loginByWx(code, user);
     }
 }

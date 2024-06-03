@@ -124,4 +124,19 @@ public interface UserService extends IService<User> {
      */
     QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
 
+    /**
+     * 使用微信登录
+     *
+     * @param code 微信二维码绑定的code
+     * @param user 用户信息
+     */
+    void loginByWx(Integer code, User user);
+
+    /**
+     * 使用微信注册
+     *
+     * @param code 微信二维码绑定的code
+     * @param user 需要保存的用户信息
+     */
+    void registerByWx(Integer code, User user);
 }

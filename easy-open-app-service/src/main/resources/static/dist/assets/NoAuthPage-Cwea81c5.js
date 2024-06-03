@@ -1,0 +1,1 @@
+import{_ as t,c as a,w as c,o,a as r}from"./index-DSC3Ms3s.js";import{S as s}from"./index-DYJE_-5E.js";const n={};function _(f,p){const e=s;return o(),a(e,null,{default:c(()=>[r("无权限")]),_:1})}const u=t(n,[["render",_]]);export{u as default};
