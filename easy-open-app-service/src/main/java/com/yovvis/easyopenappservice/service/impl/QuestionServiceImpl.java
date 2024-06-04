@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenapi.model.vo.UserVO;
 import com.yovvis.easyopenappservice.mapper.QuestionMapper;
 import com.yovvis.easyopenappservice.model.dto.question.QuestionQueryRequest;

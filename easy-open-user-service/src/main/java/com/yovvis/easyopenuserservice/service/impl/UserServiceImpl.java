@@ -7,7 +7,7 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenapi.model.vo.LoginUserVO;
 import com.yovvis.easyopenapi.model.vo.TokenLoginUserVO;
 import com.yovvis.easyopenapi.model.vo.UserVO;

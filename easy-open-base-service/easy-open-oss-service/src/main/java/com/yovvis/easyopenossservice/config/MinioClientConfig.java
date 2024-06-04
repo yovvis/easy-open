@@ -1,4 +1,4 @@
-package com.yovvis.easyopenappservice.config;
+package com.yovvis.easyopenossservice.config;
 
 import io.minio.MinioClient;
 import lombok.Data;

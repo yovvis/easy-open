@@ -1,4 +1,4 @@
-package com.yovvis.easyopenapi.model.entity;
+package com.yovvis.easyopenapi.model.entity.user;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;

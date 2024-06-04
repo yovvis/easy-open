@@ -2,7 +2,7 @@ package com.yovvis.easyopenappservice.controller;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenappservice.model.dto.scoringresult.ScoringResultAddRequest;
 import com.yovvis.easyopenappservice.model.dto.scoringresult.ScoringResultEditRequest;
 import com.yovvis.easyopenappservice.model.dto.scoringresult.ScoringResultQueryRequest;
@@ -63,7 +63,7 @@ public class ScoringResultController {
         // 数据校验
         scoringResultService.validScoringResult(scoringResult, true);
         // 填充默认值
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         scoringResult.setUserId(loginUser.getId());
         // 写入数据库
         boolean result = scoringResultService.save(scoringResult);
@@ -86,7 +86,7 @@ public class ScoringResultController {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userFeignClient.getLoginUser(request);
+        User user = userFeignClient.getLoginUser();
         long id = deleteRequest.getId();
         // 判断是否存在
         ScoringResult oldScoringResult = scoringResultService.getById(id);
@@ -198,7 +198,7 @@ public class ScoringResultController {
         @RequestBody ScoringResultQueryRequest scoringResultQueryRequest, HttpServletRequest request) {
         ThrowUtils.throwIf(scoringResultQueryRequest == null, ErrorCode.PARAMS_ERROR);
         // 补充查询条件，只查询当前登录用户的数据
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         scoringResultQueryRequest.setUserId(loginUser.getId());
         long current = scoringResultQueryRequest.getCurrent();
         long size = scoringResultQueryRequest.getPageSize();
@@ -231,7 +231,7 @@ public class ScoringResultController {
         scoringResult.setResultProp(JSONUtil.toJsonStr(resultProp));
         // 数据校验
         scoringResultService.validScoringResult(scoringResult, false);
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         // 判断是否存在
         long id = scoringResultEditRequest.getId();
         ScoringResult oldScoringResult = scoringResultService.getById(id);

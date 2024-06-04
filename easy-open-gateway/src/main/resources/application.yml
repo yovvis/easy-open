@@ -12,6 +12,10 @@ spring:
           uri: lb://easy-open-user-service
           predicates:
             - Path=/api/user/**
+        - id: easy-open-oss-service
+          uri: lb://easy-open-oss-service
+          predicates:
+            - Path=/api/oss/**
         - id: easy-open-api-service
           uri: lb://easy-open-api-service
           predicates:

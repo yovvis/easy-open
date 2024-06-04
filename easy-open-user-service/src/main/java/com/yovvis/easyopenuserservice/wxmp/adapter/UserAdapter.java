@@ -1,7 +1,7 @@
 package com.yovvis.easyopenuserservice.wxmp.adapter;
 
 import cn.hutool.core.util.RandomUtil;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 
 /**

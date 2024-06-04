@@ -1,7 +1,7 @@
 package com.yovvis.easyopenuserservice.dao;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenuserservice.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 

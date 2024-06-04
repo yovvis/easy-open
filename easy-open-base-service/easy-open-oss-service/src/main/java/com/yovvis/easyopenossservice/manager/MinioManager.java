@@ -1,5 +1,5 @@
-package com.yovvis.easyopenappservice.manager;
-import com.yovvis.easyopenappservice.config.MinioClientConfig;
+package com.yovvis.easyopenossservice.manager;
+import com.yovvis.easyopenossservice.config.MinioClientConfig;
 import io.minio.MinioClient;
 import io.minio.ObjectWriteResponse;
 import io.minio.UploadObjectArgs;

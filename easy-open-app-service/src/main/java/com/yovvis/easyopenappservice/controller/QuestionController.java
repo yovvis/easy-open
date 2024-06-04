@@ -2,7 +2,7 @@ package com.yovvis.easyopenappservice.controller;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenappservice.model.dto.question.*;
 import com.yovvis.easyopenappservice.model.entity.Question;
 import com.yovvis.easyopenappservice.model.vo.QuestionVO;
@@ -61,7 +61,7 @@ public class QuestionController {
         // 数据校验
         questionService.validQuestion(question, true);
         // 填充默认值
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         question.setUserId(loginUser.getId());
         // 写入数据库
         boolean result = questionService.save(question);
@@ -83,7 +83,7 @@ public class QuestionController {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userFeignClient.getLoginUser(request);
+        User user = userFeignClient.getLoginUser();
         long id = deleteRequest.getId();
         // 判断是否存在
         Question oldQuestion = questionService.getById(id);
@@ -193,7 +193,7 @@ public class QuestionController {
         HttpServletRequest request) {
         ThrowUtils.throwIf(questionQueryRequest == null, ErrorCode.PARAMS_ERROR);
         // 补充查询条件，只查询当前登录用户的数据
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         questionQueryRequest.setUserId(loginUser.getId());
         long current = questionQueryRequest.getCurrent();
         long size = questionQueryRequest.getPageSize();
@@ -226,7 +226,7 @@ public class QuestionController {
         question.setQuestionContent(JSONUtil.toJsonStr(questionContentDTO));
         // 数据校验
         questionService.validQuestion(question, false);
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         // 判断是否存在
         long id = questionEditRequest.getId();
         Question oldQuestion = questionService.getById(id);

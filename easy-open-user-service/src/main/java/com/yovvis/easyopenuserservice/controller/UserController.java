@@ -1,7 +1,9 @@
 package com.yovvis.easyopenuserservice.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.client.FileFeignClient;
+import com.yovvis.easyopenapi.model.entity.file.UploadFileRequest;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenapi.model.vo.LoginUserVO;
 import com.yovvis.easyopenapi.model.vo.TokenLoginUserVO;
 import com.yovvis.easyopenapi.model.vo.UserVO;
@@ -14,13 +16,9 @@ import com.yovvis.easyopencommon.constant.UserConstant;
 import com.yovvis.easyopencommon.enums.FileUploadBizEnum;
 import com.yovvis.easyopencommon.exception.BusinessException;
 import com.yovvis.easyopencommon.exception.ThrowUtils;
-import com.yovvis.easyopenuserservice.model.dto.file.UploadFileRequest;
 import com.yovvis.easyopenuserservice.model.dto.user.*;
 import com.yovvis.easyopenuserservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
-import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
-import me.chanjar.weixin.mp.api.WxMpService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.DigestUtils;
@@ -44,7 +42,7 @@ public class UserController {
     private UserService userService;
 
     @Resource
-    private FileController fileController;
+    private FileFeignClient fileFeignClient;
 
     // region 登录相关
 
@@ -142,11 +140,8 @@ public class UserController {
         User user = new User();
         BeanUtils.copyProperties(userAddRequest, user);
         // 上传头像
-        UploadFileRequest uploadFileRequest = new UploadFileRequest();
-        uploadFileRequest.setBiz(FileUploadBizEnum.USER_AVATAR.getValue());
-        BaseResponse<String> stringBaseResponse = fileController.uploadFile(userAddRequest.getUserAvatar(), uploadFileRequest, request);
-        String avatar = stringBaseResponse.getData();
-        user.setUserAvatar(avatar);
+        String avatarUrl = fileFeignClient.uploadFile(userAddRequest.getUserAvatar(), FileUploadBizEnum.USER_AVATAR.getValue());
+        user.setUserAvatar(avatarUrl);
         // 默认密码 11111
         String defaultPassword = "11111";
         String encryptPassword = DigestUtils.md5DigestAsHex((SALT + defaultPassword).getBytes());
@@ -192,11 +187,8 @@ public class UserController {
         BeanUtils.copyProperties(userUpdateRequest, user);
         if (userUpdateRequest.getNewAvatar() != null) {
             // 上传头像
-            UploadFileRequest uploadFileRequest = new UploadFileRequest();
-            uploadFileRequest.setBiz(FileUploadBizEnum.USER_AVATAR.getValue());
-            BaseResponse<String> stringBaseResponse = fileController.uploadFile(userUpdateRequest.getNewAvatar(), uploadFileRequest, request);
-            String avatar = stringBaseResponse.getData();
-            user.setUserAvatar(avatar);
+            String avatarUrl = fileFeignClient.uploadFile(userUpdateRequest.getNewAvatar(), FileUploadBizEnum.USER_AVATAR.getValue());
+            user.setUserAvatar(avatarUrl);
         }
         boolean result = userService.updateById(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);

@@ -1,7 +1,7 @@
 package com.yovvis.easyopenuserservice.wxmp.service;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenuserservice.dao.UserDAO;
 import com.yovvis.easyopenuserservice.service.UserService;
 import com.yovvis.easyopenuserservice.wxmp.adapter.UserAdapter;

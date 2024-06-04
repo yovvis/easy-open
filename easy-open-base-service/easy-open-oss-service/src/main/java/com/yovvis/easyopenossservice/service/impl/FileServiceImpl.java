@@ -1,22 +1,20 @@
-package com.yovvis.easyopenuserservice.controller;
+package com.yovvis.easyopenossservice.service.impl;
 
 import cn.hutool.core.io.FileUtil;
-import com.yovvis.easyopenapi.model.entity.User;
-import com.yovvis.easyopencommon.common.BaseResponse;
+import com.yovvis.easyopenapi.client.FileFeignClient;
+import com.yovvis.easyopenapi.client.UserFeignClient;
+import com.yovvis.easyopenapi.model.entity.file.UploadFileRequest;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopencommon.common.ErrorCode;
 import com.yovvis.easyopencommon.common.ResultUtils;
 import com.yovvis.easyopencommon.constant.FileConstant;
 import com.yovvis.easyopencommon.enums.FileUploadBizEnum;
 import com.yovvis.easyopencommon.exception.BusinessException;
-import com.yovvis.easyopenapi.client.UserFeignClient;
-import com.yovvis.easyopenuserservice.manager.MinioManager;
-import com.yovvis.easyopenuserservice.model.dto.file.UploadFileRequest;
+import com.yovvis.easyopenossservice.manager.MinioManager;
+import com.yovvis.easyopenossservice.service.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -25,12 +23,14 @@ import java.io.File;
 import java.util.Arrays;
 
 /**
- * 文件接口
+ * 描述
+ *
+ * @author yovvis
+ * @date 2024/6/4
  */
-@RestController
-@RequestMapping("/file")
 @Slf4j
-public class FileController {
+@Service
+public class FileServiceImpl implements FileService {
 
     @Resource
     private UserFeignClient userFeignClient;
@@ -39,22 +39,18 @@ public class FileController {
     private MinioManager minioManager;
 
     /**
-     * 文件上传
-     *
      * @param multipartFile
      * @param uploadFileRequest
-     * @param request
      * @return
      */
-    @PostMapping("/upload")
-    public BaseResponse<String> uploadFile(@RequestPart("file") MultipartFile multipartFile, UploadFileRequest uploadFileRequest, HttpServletRequest request) {
+    public String uploadFile(MultipartFile multipartFile, UploadFileRequest uploadFileRequest) {
         String biz = uploadFileRequest.getBiz();
         FileUploadBizEnum fileUploadBizEnum = FileUploadBizEnum.getEnumByValue(biz);
         if (fileUploadBizEnum == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         validFile(multipartFile, fileUploadBizEnum);
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         // 文件目录：根据业务、用户来划分
         String uuid = RandomStringUtils.randomAlphanumeric(8);
         String filename = uuid + "-" + multipartFile.getOriginalFilename();
@@ -66,7 +62,7 @@ public class FileController {
             multipartFile.transferTo(file);
             minioManager.uploadObject(filepath, file);
             // 返回可访问地址
-            return ResultUtils.success(FileConstant.MINIO_HOST + filepath);
+            return FileConstant.MINIO_HOST + filepath;
         } catch (Exception e) {
             log.error("file upload error, filepath = " + filepath, e);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "上传失败");
@@ -102,4 +98,5 @@ public class FileController {
             }
         }
     }
+
 }

@@ -1,7 +1,7 @@
 package com.yovvis.easyopenapi.client;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenapi.model.vo.LoginUserVO;
 import com.yovvis.easyopenapi.model.vo.UserVO;
 import com.yovvis.easyopencommon.common.ErrorCode;
@@ -45,10 +45,12 @@ public interface UserFeignClient {
     /**
      * 获取当前登录用户
      *
-     * @param request
      * @return
      */
-    default User getLoginUser(HttpServletRequest request) {
+    default User getLoginUser() {
+        if (!StpUtil.isLogin()) {
+            throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
+        }
         // 先判断是否已登录
         Object userObj = StpUtil.getTokenSession().get(USER_LOGIN_STATE);
         User currentUser = (User) userObj;

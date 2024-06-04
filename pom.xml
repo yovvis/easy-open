@@ -11,11 +11,18 @@
     <description>轻享开放平台</description>
     <modules>
         <module>easy-open-common</module>
-        <module>easy-open-gateway</module>
         <module>easy-open-api</module>
+        <!-- 8101 -->
+        <module>easy-open-gateway</module>
+        <!-- 8102 -->
         <module>easy-open-user-service</module>
+        <!-- 8103 -->
+        <module>easy-open-base-service</module>
+        <!-- 8104 -->
         <module>easy-open-api-service</module>
+        <!-- 8105 -->
         <module>easy-open-app-service</module>
+
     </modules>
     <properties>
         <!-- source -->
@@ -39,47 +46,6 @@
         <wx.version>4.6.0</wx.version>
         <minio.version>8.5.10</minio.version>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-    </dependencies>
     <dependencyManagement>
         <dependencies>
             <dependency>
