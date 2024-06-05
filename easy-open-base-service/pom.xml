@@ -11,6 +11,10 @@
     <artifactId>easy-open-base-service</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>easy-open-oss-service</module>
+    </modules>
+
     <build>
         <plugins>
             <plugin>

@@ -20,6 +20,12 @@
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
         </dependency>
+        <!-- https://open.bigmodel.cn/dev/api#sdk_example -->
+        <dependency>
+            <groupId>cn.bigmodel.openapi</groupId>
+            <artifactId>oapi-java-sdk</artifactId>
+            <version>release-V4-2.0.2</version>
+        </dependency>
         <!-- base -->
         <dependency>
             <groupId>com.yovvis</groupId>

@@ -10,7 +10,7 @@
     <artifactId>easy-open-oss-service</artifactId>
     <version>1.0.0</version>
     <name>easy-open-oss-service</name>
-    <description>easy-open-api-service</description>
+    <description>easy-open-oss-service</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>

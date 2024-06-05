@@ -17,6 +17,7 @@ import com.yovvis.easyopenappservice.service.AppService;
 import com.yovvis.easyopenappservice.service.QuestionService;
 import com.yovvis.easyopencommon.common.ErrorCode;
 import com.yovvis.easyopencommon.constant.CommonConstant;
+import com.yovvis.easyopencommon.enums.AppTypeEnum;
 import com.yovvis.easyopencommon.exception.ThrowUtils;
 import com.yovvis.easyopencommon.utils.SqlUtils;
 import com.yovvis.easyopenapi.client.UserFeignClient;
@@ -172,5 +173,23 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
 
         questionVOPage.setRecords(questionVOList);
         return questionVOPage;
+    }
+
+    /**
+     * 生成题目的用户消息
+     *
+     * @param app
+     * @param questionNumber
+     * @param optionNumber
+     * @return
+     */
+    public String getGenerateQuestionUserMessage(App app, int questionNumber, int optionNumber) {
+        StringBuilder userMessage = new StringBuilder();
+        userMessage.append(app.getAppName()).append("\n");
+        userMessage.append(app.getAppDesc()).append("\n");
+        userMessage.append(AppTypeEnum.getEnumByValue(app.getAppType()).getText() + "类").append("\n");
+        userMessage.append(questionNumber).append("\n");
+        userMessage.append(optionNumber);
+        return userMessage.toString();
     }
 }
