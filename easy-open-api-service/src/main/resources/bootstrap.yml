@@ -13,6 +13,5 @@ spring:
         file-extension: yml
         shared-configs:
           - data-id: shared-db.yml
-          - data-id: shared-oss.yml
           - data-id: shared-log.yml
         namespace: ${nacos.namespace}

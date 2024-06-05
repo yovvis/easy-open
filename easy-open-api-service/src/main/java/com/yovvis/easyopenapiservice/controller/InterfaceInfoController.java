@@ -1,7 +1,7 @@
 package com.yovvis.easyopenapiservice.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenapiservice.model.dto.interfaceinfo.InterfaceInfoAddRequest;
 import com.yovvis.easyopenapiservice.model.dto.interfaceinfo.InterfaceInfoEditRequest;
 import com.yovvis.easyopenapiservice.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
@@ -58,7 +58,7 @@ public class InterfaceInfoController {
         // 数据校验
         interfaceInfoService.validInterfaceInfo(interfaceInfo, true);
         // todo 填充默认值
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         interfaceInfo.setUserId(loginUser.getId());
         // 写入数据库
         boolean result = interfaceInfoService.save(interfaceInfo);
@@ -80,7 +80,7 @@ public class InterfaceInfoController {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userFeignClient.getLoginUser(request);
+        User user = userFeignClient.getLoginUser();
         long id = deleteRequest.getId();
         // 判断是否存在
         InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
@@ -188,7 +188,7 @@ public class InterfaceInfoController {
                                                                            HttpServletRequest request) {
         ThrowUtils.throwIf(interfaceInfoQueryRequest == null, ErrorCode.PARAMS_ERROR);
         // 补充查询条件，只查询当前登录用户的数据
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         interfaceInfoQueryRequest.setUserId(loginUser.getId());
         long current = interfaceInfoQueryRequest.getCurrent();
         long size = interfaceInfoQueryRequest.getPageSize();
@@ -218,7 +218,7 @@ public class InterfaceInfoController {
         BeanUtils.copyProperties(interfaceInfoEditRequest, interfaceInfo);
         // 数据校验
         interfaceInfoService.validInterfaceInfo(interfaceInfo, false);
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         // 判断是否存在
         long id = interfaceInfoEditRequest.getId();
         InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);

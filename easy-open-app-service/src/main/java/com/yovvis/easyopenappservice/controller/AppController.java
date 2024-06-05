@@ -1,7 +1,7 @@
 package com.yovvis.easyopenappservice.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yovvis.easyopenapi.model.entity.User;
+import com.yovvis.easyopenapi.model.entity.user.User;
 import com.yovvis.easyopenappservice.model.dto.app.AppAddRequest;
 import com.yovvis.easyopenappservice.model.dto.app.AppEditRequest;
 import com.yovvis.easyopenappservice.model.dto.app.AppQueryRequest;
@@ -58,7 +58,7 @@ public class AppController {
         // 数据校验
         appService.validApp(app, true);
         // 填充默认值
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         app.setUserId(loginUser.getId());
         app.setReviewStatus(ReviewStatusEnum.REVIEWING.getValue());
         // 写入数据库
@@ -81,7 +81,7 @@ public class AppController {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userFeignClient.getLoginUser(request);
+        User user = userFeignClient.getLoginUser();
         long id = deleteRequest.getId();
         // 判断是否存在
         App oldApp = appService.getById(id);
@@ -189,7 +189,7 @@ public class AppController {
         HttpServletRequest request) {
         ThrowUtils.throwIf(appQueryRequest == null, ErrorCode.PARAMS_ERROR);
         // 补充查询条件，只查询当前登录用户的数据
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         appQueryRequest.setUserId(loginUser.getId());
         long current = appQueryRequest.getCurrent();
         long size = appQueryRequest.getPageSize();
@@ -218,7 +218,7 @@ public class AppController {
         BeanUtils.copyProperties(appEditRequest, app);
         // 数据校验
         appService.validApp(app, false);
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         // 判断是否存在
         long id = appEditRequest.getId();
         App oldApp = appService.getById(id);
@@ -263,7 +263,7 @@ public class AppController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "请勿重复审核");
         }
         // 更新审核状态
-        User loginUser = userFeignClient.getLoginUser(request);
+        User loginUser = userFeignClient.getLoginUser();
         App app = new App();
         app.setId(id);
         app.setReviewStatus(reviewStatus);

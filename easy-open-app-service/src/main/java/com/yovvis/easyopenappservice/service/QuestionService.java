@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yovvis.easyopenappservice.model.dto.question.QuestionQueryRequest;
+import com.yovvis.easyopenappservice.model.entity.App;
 import com.yovvis.easyopenappservice.model.entity.Question;
 import com.yovvis.easyopenappservice.model.vo.QuestionVO;
 
@@ -50,4 +51,14 @@ public interface QuestionService extends IService<Question> {
      * @return
      */
     Page<QuestionVO> getQuestionVOPage(Page<Question> questionPage, HttpServletRequest request);
+
+    /**
+     * 生成题目的用户消息
+     *
+     * @param app
+     * @param questionNumber
+     * @param optionNumber
+     * @return
+     */
+    String getGenerateQuestionUserMessage(App app, int questionNumber, int optionNumber);
 }

@@ -1,7 +1,7 @@
 version: '3'
 services:
   easy-open-gateway:
-    image: yovvis666/easy-open-gateway:1.0.0
+    image: yovvis666/easy-open-gateway:1.0.1
     container_name: easy-open-gateway
     environment:
       - SPRING_PROFILES_ACTIVE=prod
@@ -14,7 +14,7 @@ services:
       - easynetwork
 
   easy-open-user-service:
-    image: yovvis666/easy-open-user-service:1.0.0
+    image: yovvis666/easy-open-user-service:1.0.1
     container_name: easy-open-user-service
     environment:
       - SPRING_PROFILES_ACTIVE=prod
@@ -28,13 +28,13 @@ services:
     depends_on:
       - easy-open-gateway
 
-  easy-open-api-service:
-    image: yovvis666/easy-open-api-service:1.0.0
-    container_name: easy-open-api-service
+  easy-open-oss-service:
+    image: yovvis666/easy-open-oss-service:1.0.1
+    container_name: easy-open-oss-service
     environment:
       - SPRING_PROFILES_ACTIVE=prod
     build:
-      context: ./easy-open-api-service
+      context: ./easy-open-base-service/easy-open-oss-service
       dockerfile: Dockerfile
     ports:
       - "8103:8103"
@@ -44,8 +44,24 @@ services:
       - easy-open-user-service
       - easy-open-gateway
 
+  easy-open-api-service:
+    image: yovvis666/easy-open-api-service:1.0.1
+    container_name: easy-open-api-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    build:
+      context: ./easy-open-api-service
+      dockerfile: Dockerfile
+    ports:
+      - "8104:8104"
+    networks:
+      - easynetwork
+    depends_on:
+      - easy-open-user-service
+      - easy-open-gateway
+
   easy-open-app-service:
-    image: yovvis666/easy-open-app-service:1.0.0
+    image: yovvis666/easy-open-app-service:1.0.1
     container_name: easy-open-app-service
     environment:
       - SPRING_PROFILES_ACTIVE=prod
@@ -53,7 +69,7 @@ services:
       context: ./easy-open-app-service
       dockerfile: Dockerfile
     ports:
-      - "8104:8104"
+      - "8105:8105"
     networks:
       - easynetwork
     depends_on:
