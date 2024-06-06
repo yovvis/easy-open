@@ -2,7 +2,7 @@ package com.yovvis.easyopenappservice.controller;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopenappservice.constant.AiConstant;
 import com.yovvis.easyopenappservice.manager.AiManager;
 import com.yovvis.easyopenappservice.model.dto.question.*;
@@ -17,7 +17,6 @@ import com.yovvis.easyopencommon.common.DeleteRequest;
 import com.yovvis.easyopencommon.common.ErrorCode;
 import com.yovvis.easyopencommon.common.ResultUtils;
 import com.yovvis.easyopencommon.constant.UserConstant;
-import com.yovvis.easyopencommon.enums.AppTypeEnum;
 import com.yovvis.easyopencommon.exception.BusinessException;
 import com.yovvis.easyopencommon.exception.ThrowUtils;
 import com.yovvis.easyopenapi.client.UserFeignClient;

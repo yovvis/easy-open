@@ -2,7 +2,7 @@ package com.yovvis.easyopenuserservice.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopenapi.model.vo.LoginUserVO;
 import com.yovvis.easyopenapi.model.vo.TokenLoginUserVO;
 import com.yovvis.easyopenapi.model.vo.UserVO;

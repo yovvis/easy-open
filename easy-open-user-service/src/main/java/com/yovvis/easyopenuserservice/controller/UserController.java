@@ -2,8 +2,7 @@ package com.yovvis.easyopenuserservice.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yovvis.easyopenapi.client.FileFeignClient;
-import com.yovvis.easyopenapi.model.entity.file.UploadFileRequest;
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopenapi.model.vo.LoginUserVO;
 import com.yovvis.easyopenapi.model.vo.TokenLoginUserVO;
 import com.yovvis.easyopenapi.model.vo.UserVO;

@@ -1,4 +1,4 @@
-package com.yovvis.easyopenapi.model.entity.file;
+package com.yovvis.easyopenapi.model.dto.file;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.yovvis.easyopenuserservice.dao;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopenuserservice.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class UserDAO extends ServiceImpl<UserMapper, User> {
      */
     public User getByOpenId(String openId) {
         return this.lambdaQuery()
-                .eq(User::getOpenId, openId)
+                .eq(User::getMpOpenId, openId)
                 .one();
     }
 

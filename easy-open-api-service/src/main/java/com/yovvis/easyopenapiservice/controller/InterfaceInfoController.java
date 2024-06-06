@@ -1,7 +1,7 @@
 package com.yovvis.easyopenapiservice.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopenapiservice.model.dto.interfaceinfo.InterfaceInfoAddRequest;
 import com.yovvis.easyopenapiservice.model.dto.interfaceinfo.InterfaceInfoEditRequest;
 import com.yovvis.easyopenapiservice.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
