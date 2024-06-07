@@ -1,7 +1,7 @@
 package com.yovvis.easyopenuserservice.wxmp.adapter;
 
 import cn.hutool.core.util.RandomUtil;
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.entity.User;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 
 /**
@@ -21,7 +21,7 @@ public class UserAdapter {
      */
     public static User buildAuthorizeUser(WxOAuth2UserInfo userInfo) {
         User user = new User();
-        user.setOpenId(userInfo.getOpenid());
+        user.setMpOpenId(userInfo.getOpenid());
         user.setUserAvatar(userInfo.getHeadImgUrl());
         user.setGender(userInfo.getSex());
         if (userInfo.getNickname().length() > MAX_NAME_LEN) {

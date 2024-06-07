@@ -1,4 +1,4 @@
-package com.yovvis.easyopenapi.model.entity.user;
+package com.yovvis.easyopenapi.model.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
@@ -18,12 +18,6 @@ public class User implements Serializable {
      */
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
-
-    /**
-     * openId
-     */
-    @TableField(value = "open_id")
-    private String openId;
 
     /**
      * 账号

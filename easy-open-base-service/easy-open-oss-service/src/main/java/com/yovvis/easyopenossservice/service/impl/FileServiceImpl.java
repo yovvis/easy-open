@@ -1,12 +1,10 @@
 package com.yovvis.easyopenossservice.service.impl;
 
 import cn.hutool.core.io.FileUtil;
-import com.yovvis.easyopenapi.client.FileFeignClient;
 import com.yovvis.easyopenapi.client.UserFeignClient;
-import com.yovvis.easyopenapi.model.entity.file.UploadFileRequest;
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.dto.file.UploadFileRequest;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopencommon.common.ErrorCode;
-import com.yovvis.easyopencommon.common.ResultUtils;
 import com.yovvis.easyopencommon.constant.FileConstant;
 import com.yovvis.easyopencommon.enums.FileUploadBizEnum;
 import com.yovvis.easyopencommon.exception.BusinessException;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.Arrays;
 

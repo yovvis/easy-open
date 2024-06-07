@@ -1,9 +1,7 @@
 package com.yovvis.easyopenossservice.service;
 
-import com.yovvis.easyopenapi.model.entity.file.UploadFileRequest;
+import com.yovvis.easyopenapi.model.dto.file.UploadFileRequest;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 描述

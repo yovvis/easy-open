@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopenapi.model.vo.UserVO;
 import com.yovvis.easyopenappservice.model.dto.useranswer.UserAnswerQueryRequest;
 import com.yovvis.easyopenappservice.model.entity.App;

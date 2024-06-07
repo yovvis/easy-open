@@ -1,7 +1,7 @@
 package com.yovvis.easyopenappservice.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopenappservice.model.dto.app.AppAddRequest;
 import com.yovvis.easyopenappservice.model.dto.app.AppEditRequest;
 import com.yovvis.easyopenappservice.model.dto.app.AppQueryRequest;

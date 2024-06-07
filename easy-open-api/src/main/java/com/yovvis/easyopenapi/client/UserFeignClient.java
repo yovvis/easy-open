@@ -1,7 +1,7 @@
 package com.yovvis.easyopenapi.client;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.yovvis.easyopenapi.model.entity.user.User;
+import com.yovvis.easyopenapi.model.entity.User;
 import com.yovvis.easyopenapi.model.vo.LoginUserVO;
 import com.yovvis.easyopenapi.model.vo.UserVO;
 import com.yovvis.easyopencommon.common.ErrorCode;
@@ -12,7 +12,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.List;
 

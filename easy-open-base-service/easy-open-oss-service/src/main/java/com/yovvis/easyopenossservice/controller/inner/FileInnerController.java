@@ -1,9 +1,8 @@
 package com.yovvis.easyopenossservice.controller.inner;
 
 import com.yovvis.easyopenapi.client.FileFeignClient;
-import com.yovvis.easyopenapi.model.entity.file.UploadFileRequest;
+import com.yovvis.easyopenapi.model.dto.file.UploadFileRequest;
 import com.yovvis.easyopenossservice.service.FileService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
