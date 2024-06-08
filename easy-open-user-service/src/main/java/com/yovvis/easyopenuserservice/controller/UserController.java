@@ -1,5 +1,6 @@
 package com.yovvis.easyopenuserservice.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yovvis.easyopenapi.client.FileFeignClient;
 import com.yovvis.easyopenapi.model.entity.User;
@@ -27,6 +28,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static com.yovvis.easyopencommon.constant.UserConstant.USER_LOGIN_STATE;
 import static com.yovvis.easyopenuserservice.service.impl.UserServiceImpl.SALT;
 
 /**
@@ -282,6 +284,8 @@ public class UserController {
         user.setId(loginUser.getId());
         boolean result = userService.updateById(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        // 更新用户会话信息
+        StpUtil.getTokenSession().set(USER_LOGIN_STATE, user);
         return ResultUtils.success(true);
     }
 }
