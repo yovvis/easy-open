@@ -20,7 +20,7 @@ server:
 wx:
   mp:
     configs:
-      - appId: ${self.wechat.appId}
-        secret-key: ${self.wechat.secretKey}
-        token: ${self.wechat.token}
-    callback: ${self.wechat.callback}
+      - appId: ${wechat.mp.configs.appId}
+        secret-key: ${wechat.mp.configs.secretKey}
+        token: ${wechat.mp.configs.token}
+    callback: ${wechat.mp.callback}
